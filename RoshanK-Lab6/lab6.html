@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        p {
+            font-weight: bold;
+        }
+        p#id_1 {
+           color:pink; 
+        }
+        title {
+            text-align: center;
+        }
+        button {
+            color: skyblue;
+            background-color: aliceblue;
+        }
+    </style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport">
+        <title>Grades and name</title>
+    </head>
+    <body>
+        <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+            <p id="id_1">What is your name?</p>
+            <label>First Name: </span></label><input type="text" name="name" placeholder="Erin" id="firstname"> 
+            <label>Last Name: </label><input type="text" name="name" placeholder="Apple" id="lastname">        
+        </form>
+
+        <form>
+            <p>What are your marks?</p>
+            <label>1st Mark </label><input type="text" name="mark_1" placeholder="76%" id="mark1"><span id="marks"></span>
+            <label>2nd Mark </label><input type="text" name="mark_2" placeholder="69%" id="mark2"><span id="marks"></span>
+            <label>3rd Mark </label><input type="text" name="mark_3" placeholder="32%" id="mark3"><span id="marks"></span>
+
+            <input type="button" onclick="validateTxt()" value="Validate">
+            <input type="button" onclick="printResults()" value="Print Result">
+        </form>
+        <br> Result: <br>
+        <span id="result"></span>
+    </body>
+
+    <script>
+        function validateTxt() {
+            let x = document.getElementById("marks").value;
+            let text;
+            if (isNaN(x) || x < 0 || x > 100) {
+                text = "Input not valid";
+            } else {
+                text = "Input is valid"
+            }
+
+            var fields = document.forms["name"].value;
+            var i, l = fields.length;
+            var fieldname;
+            for (i = 0; i < l; i++) {
+                fieldname = fields[i];
+                if (document.forms["register"][fieldname].value === "") {
+                    alert(fieldname + "is not filled. Please fill it it");
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+
+        function printResults() {
+            var first = document.getElementById("firstname").value;
+            var second = document.getElementById("secondname").value;
+            var num1 = parseFloat( document.getElementById("mark1").value);
+            var num2 = parseFloat( document.getElementById("mark2").value);
+            var num3 = parseFloat( document.getElementById("mark3").value);
+           
+            document.getElementById("result").innerHTML = first+" "+second;
+            document.getElementById("result").innerHTML = (num1 + num2 + num3) / 3;
+        }
+    </script>
+</html>
